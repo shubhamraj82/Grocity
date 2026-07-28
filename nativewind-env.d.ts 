@@ -1,0 +1,21 @@
+/// <reference types="nativewind/types" />Fix the following issues. The issues can be from different files or can overlap on same lines in one file.
+
+- Verify each finding against current code. Fix only still-valid issues, skip the rest with a brief reason, keep changes minimal, and validate.
+
+In @nativewind-env.d.ts  at line 1, Delete the duplicate nativewind-env.d.ts path containing trailing whitespace, preserving the canonical nativewind-env.d.ts file and its existing NativeWind type reference.
+
+- Verify each finding against current code. Fix only still-valid issues, skip the rest with a brief reason, keep changes minimal, and validate.
+
+In @pnpm-workspace.yaml around lines 1 - 5, Replace the placeholder strings under the allowBuilds configuration with explicit boolean true or false values for browser-tabs-lock, bufferutil, core-js, and utf-8-validate, choosing each value based on whether that package’s build script is approved. Verify the configuration with pnpm install --frozen-lockfile.
+
+- Verify each finding against current code. Fix only still-valid issues, skip the rest with a brief reason, keep changes minimal, and validate.
+
+In @src/app/(auth)/sign-in.tsx around lines 44 - 45, Implement the needs_second_factor branch in the sign-in flow by rendering the appropriate MFA verification UI and invoking the resolved Clerk second-factor APIs for supported factors, then continue navigation on successful verification; if MFA is intentionally unsupported, explicitly prevent or disable it in the authentication configuration instead of leaving the branch inert.
+
+- Verify each finding against current code. Fix only still-valid issues, skip the rest with a brief reason, keep changes minimal, and validate.
+
+In @src/app/(auth)/sign-up.tsx around lines 125 - 131, Update the password TextInput in the sign-up screen to disable automatic capitalization and autocorrection, preserving the existing secure-entry behavior. Also verify the repository’s React Native version and target platforms before adding autoComplete="new-password"; use it only if supported.
+
+- Verify each finding against current code. Fix only still-valid issues, skip the rest with a brief reason, keep changes minimal, and validate.
+
+In @src/app/(auth)/sign-up.tsx around lines 38 - 43, Update the pending-task handling around session.currentTask after signUp.finalize() to use the routing approach supported by the repository’s resolved @clerk/expo version. Replace the console.log-and-return behavior with task-specific UI or navigation to the appropriate Clerk session-task route, and apply the same handling to the other matching branch so signUp.status === 'complete' never renders a blank screen for pending tasks.
