@@ -10,14 +10,6 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome!</Text>
-      <Show when="signed-out">
-        <Link href="/(auth)/sign-in">
-          <Text>Sign in</Text>
-        </Link>
-        <Link href="/(auth)/sign-up">
-          <Text>Sign up</Text>
-        </Link>
-      </Show>
       <Show when="signed-in">
         <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
         <Pressable style={styles.button} onPress={() => signOut()}>

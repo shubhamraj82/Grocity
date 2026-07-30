@@ -3,6 +3,12 @@ const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
 
+config.resolver.blockList = [
+  ...config.resolver.blockList,
+  /node_modules[\\/]\.ignored(?:[\\/].*)?$/,
+  /node_modules[\\/](?:@[^\\/]+[\\/])?[^\\/]+[\\/]android[\\/](?:\.cxx|\.gradle|build)(?:[\\/].*)?$/,
+];
+
 config.resolver.unstable_enablePackageExports = false;
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
