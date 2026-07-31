@@ -7,6 +7,7 @@ import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
 export default function SignInScreen() {
 
   const {handleSocialAuth,loadingStrategy}= useSocialAuth();
+  
   const isGoogleClicked=loadingStrategy==="oauth_google";
   const isAppleClicked=loadingStrategy==="oauth_apple";
   const isGithubClicked=loadingStrategy==="oauth_github";

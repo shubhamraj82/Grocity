@@ -9,7 +9,7 @@ config.resolver.blockList = [
   /node_modules[\\/](?:@[^\\/]+[\\/])?[^\\/]+[\\/]android[\\/](?:\.cxx|\.gradle|build)(?:[\\/].*)?$/,
 ];
 
-config.resolver.unstable_enablePackageExports = false;
+config.resolver.unstable_enablePackageExports = true;
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (
