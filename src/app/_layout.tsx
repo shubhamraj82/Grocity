@@ -7,14 +7,38 @@ import { useColorScheme } from "react-native";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
+const sentryDsn = process.env.EXPO_PUBLIC_SENTRY_DSN?.trim();
+
+const isValidSentryDsn = (value?: string) => {
+  if (!value) return false;
+
+  try {
+    const url = new URL(value);
+    return (
+      url.protocol === "https:" &&
+      Boolean(url.username) &&
+      /^\/\d+\/?$/.test(url.pathname) &&
+      !url.search &&
+      !url.hash
+    );
+  } catch {
+    return false;
+  }
+};
 
 if (!publishableKey) {
   throw new Error("Add EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY to your .env file");
 }
-Sentry.init({
-  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
-  integrations: [Sentry.feedbackIntegration()],
-});
+if (isValidSentryDsn(sentryDsn)) {
+  Sentry.init({
+    dsn: sentryDsn,
+    integrations: [Sentry.feedbackIntegration()],
+  });
+} else if (__DEV__) {
+  console.warn(
+    "Sentry is disabled: EXPO_PUBLIC_SENTRY_DSN must be the project DSN from Sentry settings, not an Issues URL.",
+  );
+}
 
 
 export default function RootLayout() {
