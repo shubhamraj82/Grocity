@@ -26,7 +26,12 @@
     },
     "plugins": [
       "@clerk/expo",
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "origin": "https://grocity.expo.app"
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -54,6 +59,12 @@
       "eas": {
         "projectId": "64bcf1a3-9377-4990-aeaf-fd7a9de2e494"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/64bcf1a3-9377-4990-aeaf-fd7a9de2e494"
     }
   }
 }
